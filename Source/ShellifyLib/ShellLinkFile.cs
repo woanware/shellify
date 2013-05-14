@@ -29,11 +29,12 @@ namespace Shellify
 {
 	public class ShellLinkFile : IHasIDList
 	{
-        private static readonly DateTime _windowsEpoch = new DateTime(1601, 1, 1, 0, 0, 0, 0);
+        public static readonly DateTime WindowsEpoch = new DateTime(1601, 1, 1, 0, 0, 0, 0);
 
         public ShellLinkHeader Header { get; set; }
 		public IList<ExtraDataBlock> ExtraDataBlocks { get; set; }
 		public IList<ShItemID> ShItemIDs { get; set; }
+
 
         private LinkInfo _linkInfo;
         public LinkInfo LinkInfo
@@ -244,9 +245,9 @@ namespace Shellify
                             if (result.Header.CreationTime != DateTime.MinValue &
                                 result.Header.AccessTime != DateTime.MinValue &
                                 result.Header.WriteTime != DateTime.MinValue &
-                                result.Header.CreationTime != _windowsEpoch &
-                                result.Header.AccessTime != _windowsEpoch &
-                                result.Header.WriteTime != _windowsEpoch)
+                                result.Header.CreationTime != ShellLinkFile.WindowsEpoch &
+                                result.Header.AccessTime != ShellLinkFile.WindowsEpoch &
+                                result.Header.WriteTime != ShellLinkFile.WindowsEpoch)
                             {
                                 results.Add(result);
                                 break;
